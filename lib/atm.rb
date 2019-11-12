@@ -1,3 +1,4 @@
+require 'date'
 class ATM
     attr_accessor :funds
   
@@ -6,10 +7,11 @@ class ATM
     end
   
     def withdraw(amount, account)
-     
       case
       when insufficient_funds_in_account?(amount, account)
-        return
+        { status: false, message: 'insufficient funds', date: Date.today }
+      when insufficient_funds_in_atm?(amount)
+        { status: false, message: 'insufficient funds in ATM', date: Date.today }  
       else
         perform_transaction(amount, account)
       end
@@ -21,6 +23,10 @@ class ATM
       amount > account.balance
     end
   
+    def insufficient_funds_in_atm?(amount)
+      @funds < amount
+    end
+
     def perform_transaction(amount, account)
       @funds -= amount
       account.balance -= amount
