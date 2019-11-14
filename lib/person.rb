@@ -24,4 +24,13 @@ class Person
       @account = Account.new(owner: self)
     end
 
+    def deposit(dep_amount)
+       @account == nil ? no_account : dep_amount
+    end
+
+    def no_account
+      raise 'No account present'
+    end
+  
+
 end

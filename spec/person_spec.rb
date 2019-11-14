@@ -1,6 +1,7 @@
 require './lib/person.rb'
 require './lib/atm.rb'
 require './lib/account.rb'
+require 'pry'
 
 describe Person do
   subject { described_class.new({name: 'Thomas'}) }
@@ -27,5 +28,28 @@ describe Person do
     it 'of Account class' do
       expect(subject.account).to be_an_instance_of Account
     end
+
+    it 'With himself as an owner' do
+      expect(subject.account.owner).to be subject
+    end
+  end
+  
+  describe 'can manage funds if an account been created' do
+    let(:atm) { ATM.new}
+    before { subject.create_account }
+
+    it 'can deposite funds' do
+      expect(subject.deposit(100)).to be_truthy
+    end
+  end
+
+  describe 'can not manage funds if no account been created' do
+   
+    it 'can\'t deposit funds' do
+      expect { subject.deposit(100) }.to raise_error(RuntimeError, 'No account present')
+    end
   end
 end
+
+
+
