@@ -2,17 +2,20 @@
 
 class Person
 
-    attr_accessor :name
+    attr_accessor :name 
 
-    def initialize
-        @name = set_name
-      
+    def initialize(attrs = {})
+      @name = set_name(attrs[:name])
+       
+    end
+    
+
+    def set_name(name)
+     name == nil ? missing_name : name 
     end
 
-    def set_name(input_name)
-    user_name = input_name
-
+    def missing_name
+        raise "A name is required"
     end
-
-
+    
 end
