@@ -3,7 +3,7 @@ require 'account.rb'
 
 class Person
 
-    attr_accessor :name, :cash, :account
+    attr_accessor :name, :cash, :account, :dep_amount
 
     def initialize(attrs = {})
       @name = set_name(attrs[:name])
@@ -25,12 +25,24 @@ class Person
     end
 
     def deposit(dep_amount)
-       @account == nil ? no_account : dep_amount
+       @account == nil ? no_account : perform_deposit(dep_amount)
     end
+
+  private
+
+    def perform_deposit(dep_amount)
+      @cash -= dep_amount
+      @account.balance += dep_amount
+      
+    end 
+
 
     def no_account
       raise 'No account present'
     end
+
+
+
   
 
 end
