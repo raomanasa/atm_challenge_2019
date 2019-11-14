@@ -9,6 +9,7 @@ class Person
       @name = set_name(attrs[:name])
       @cash = 0
       @account = nil
+
     end
     
 
@@ -28,13 +29,18 @@ class Person
        @account == nil ? no_account : perform_deposit(dep_amount)
     end
 
+  
+
   private
 
     def perform_deposit(dep_amount)
       @cash -= dep_amount
       @account.balance += dep_amount
-      
     end 
+
+   
+
+
 
 
     def no_account

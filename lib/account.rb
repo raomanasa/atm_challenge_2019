@@ -6,7 +6,7 @@ require 'atm.rb'
 class Account
   STANDARD_VALIDITY_YRS = 5
 
-  attr_accessor :exp_date, :account_status, :owner, :balance
+  attr_accessor :exp_date, :account_status, :owner, :balance, :pin_code
       
 
   def initialize(attrs = {})
@@ -14,6 +14,7 @@ class Account
       @account_status = :active
       set_owner(attrs[:owner])
       @balance = 0
+     
   end
 
   def set_expire_date
@@ -32,7 +33,7 @@ class Account
     def missing_owner
       raise "An Account owner is required"
     end
-
+    
     
 end
 
