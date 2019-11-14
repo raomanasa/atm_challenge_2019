@@ -1,12 +1,14 @@
-
+require 'atm.rb'
+require 'account.rb'
 
 class Person
 
-    attr_accessor :name 
+    attr_accessor :name, :cash, :account
 
     def initialize(attrs = {})
       @name = set_name(attrs[:name])
-       
+      @cash = 0
+      @account = nil
     end
     
 
@@ -18,4 +20,8 @@ class Person
         raise "A name is required"
     end
     
+    def create_account
+      @account = Account.new(owner: self)
+    end
+
 end
