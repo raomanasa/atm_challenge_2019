@@ -1,24 +1,23 @@
 require 'atm.rb'
 require 'account.rb'
+require 'pry'
 
 class Person
 
-    attr_accessor :name, :cash, :account, :dep_amount
+    attr_accessor :name, :cash, :account, :dep_amount, :atm
 
     def initialize(attrs = {})
       @name = set_name(attrs[:name])
       @cash = 0
       @account = nil
-
     end
     
-
     def set_name(name)
-     name == nil ? missing_name : name 
+      name == nil ? missing_name : name 
     end
 
     def missing_name
-        raise "A name is required"
+      raise "A name is required"
     end
     
     def create_account
@@ -26,10 +25,12 @@ class Person
     end
 
     def deposit(dep_amount)
-       @account == nil ? no_account : perform_deposit(dep_amount)
+      @account == nil ? no_account : perform_deposit(dep_amount)
     end
 
-  
+    def withdraw(args = {})
+      @account == nil ? no_account : perform_withdraw(args)
+    end
 
   private
 
@@ -37,18 +38,15 @@ class Person
       @cash -= dep_amount
       @account.balance += dep_amount
     end 
-
    
-
-
-
+    def perform_withdraw(args)
+      atm = args[:atm]
+      account = args[:account]
+      amount = args[:amount]
+      pin = args[:pin]
+    end
 
     def no_account
       raise 'No account present'
     end
-
-
-
-  
-
 end
