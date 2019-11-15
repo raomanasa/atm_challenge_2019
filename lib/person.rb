@@ -40,7 +40,7 @@ class Person
     end 
    
     def perform_withdraw(args)
-      atm = args[:atm]
+      args[:atm] == nil ? no_atm : atm = args[:atm]
       account = args[:account]
       amount = args[:amount]
       pin = args[:pin]
@@ -49,5 +49,9 @@ class Person
 
     def no_account
       raise 'No account present'
+    end
+
+    def no_atm
+      raise 'An ATM is required'
     end
 end
