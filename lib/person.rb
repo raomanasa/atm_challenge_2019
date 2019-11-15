@@ -1,10 +1,9 @@
-require 'atm.rb'
-require 'account.rb'
-require 'pry'
+require_relative 'atm.rb'
+require_relative 'account.rb'
 
 class Person
 
-    attr_accessor :name, :cash, :account, :dep_amount, :atm
+    attr_accessor :name, :cash, :account, :dep_amount, :atm, :funds
 
     def initialize(attrs = {})
       @name = set_name(attrs[:name])
@@ -50,6 +49,7 @@ class Person
       pin = args[:pin]
       @cash += args[:amount]
       @account.balance -= args[:amount]
+      atm.funds -= args[:amount]
     end
 
     def no_account

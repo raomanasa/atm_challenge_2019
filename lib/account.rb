@@ -1,6 +1,6 @@
 require 'date'
-require 'person.rb'
-require 'atm.rb'
+require_relative 'person.rb'
+require_relative 'atm.rb'
 
 
 class Account
