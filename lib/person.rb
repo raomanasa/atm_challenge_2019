@@ -49,6 +49,7 @@ class Person
       amount = args[:amount]
       pin = args[:pin]
       @cash += args[:amount]
+      @account.balance -= args[:amount]
     end
 
     def no_account
